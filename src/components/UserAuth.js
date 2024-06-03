@@ -1,22 +1,41 @@
 import React, { useState } from "react";
+import { users } from "./UserData";
+import Alert from "./Alert";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const emailUpdater = (event) => {
     setEmail(event.target.value);
-    console.log(email);
   };
 
   const passwordUpdater = (event) => {
     setPassword(event.target.value);
-    console.log(password);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(alert("You clicked on submit"));
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (user) {
+      setAlertMessage("User Authenticated");
+      setShowAlert(true);
+      console.log("User Email: " + email);
+      console.log("User Password: " + password);
+      setEmail("");
+      setPassword("");
+    } else {
+      setAlertMessage("Invalid email or password. Please try again.");
+      setShowAlert(true);
+    }
+  };
+
+  const handleAlertClose = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -65,11 +84,12 @@ export default function UserAuth() {
             value={password}
             onChange={passwordUpdater}
           />
-          <a href="/" className="btn btn-primary my-3" onClick={submitHandler}>
+          <button className="btn btn-primary my-3" onClick={submitHandler}>
             Submit
-          </a>
+          </button>
         </div>
       </div>
+      {showAlert && <Alert message={alertMessage} onClose={handleAlertClose} />}
     </div>
   );
 }
