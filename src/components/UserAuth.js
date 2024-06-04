@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { users } from "./UserData";
-import Alert from "./Alert";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
 
   const emailUpdater = (event) => {
     setEmail(event.target.value);
@@ -22,74 +19,66 @@ export default function UserAuth() {
       (user) => user.email === email && user.password === password
     );
     if (user) {
-      setAlertMessage("User Authenticated");
-      setShowAlert(true);
       console.log("User Email: " + email);
       console.log("User Password: " + password);
       setEmail("");
       setPassword("");
-    } else {
-      setAlertMessage("Invalid email or password. Please try again.");
-      setShowAlert(true);
     }
   };
 
-  const handleAlertClose = () => {
-    setShowAlert(false);
-  };
-
   return (
-    <div
-      style={{ display: "flex", justifyContent: "center", marginTop: "10%" }}
-    >
+    <>
       <div
-        className="card text-center mb-3"
-        style={{
-          width: "300px",
-          height: "280px",
-        }}
+        style={{ display: "flex", justifyContent: "center", marginTop: "10%" }}
       >
-        <div className="card-body">
-          <h5 className="card-text">Log In</h5>
-          <div className="mb-3">
+        <div
+          className="card text-center mb-3"
+          style={{
+            width: "300px",
+            height: "280px",
+          }}
+        >
+          <div className="card-body">
+            <h5 className="card-text">Log In</h5>
+            <div className="mb-3">
+              <label
+                htmlFor="exampleFormControlInput1"
+                className="form-label"
+                style={{ display: "flex" }}
+              >
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="exampleFormControlInput1"
+                placeholder="name@example.com"
+                value={email}
+                onChange={emailUpdater}
+              />
+            </div>
             <label
-              htmlFor="exampleFormControlInput1"
+              htmlFor="inputPassword5"
               className="form-label"
               style={{ display: "flex" }}
             >
-              Email address
+              Password
             </label>
             <input
-              type="email"
+              type="password"
+              id="inputPassword5"
               className="form-control"
-              id="exampleFormControlInput1"
-              placeholder="name@example.com"
-              value={email}
-              onChange={emailUpdater}
+              aria-describedby="passwordHelpBlock"
+              placeholder="Minimum 8 characters"
+              value={password}
+              onChange={passwordUpdater}
             />
+            <button className="btn btn-primary my-3" onClick={submitHandler}>
+              Submit
+            </button>
           </div>
-          <label
-            htmlFor="inputPassword5"
-            className="form-label"
-            style={{ display: "flex" }}
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="inputPassword5"
-            className="form-control"
-            aria-describedby="passwordHelpBlock"
-            placeholder="Minimum 8 characters"
-            value={password}
-            onChange={passwordUpdater}
-          />
-          <button className="btn btn-primary my-3" onClick={submitHandler}>
-            Submit
-          </button>
         </div>
       </div>
-      {showAlert && <Alert message={alertMessage} onClose={handleAlertClose} />}
-    </div>
+    </>
   );
 }
