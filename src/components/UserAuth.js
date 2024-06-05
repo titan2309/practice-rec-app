@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { users } from "./UserData";
 
-export default function UserAuth() {
+export default function UserAuth(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,8 +21,11 @@ export default function UserAuth() {
     if (user) {
       console.log("User Email: " + email);
       console.log("User Password: " + password);
+      props.showAlert("You have been authenticated", "Welcome");
       setEmail("");
       setPassword("");
+    } else {
+      props.showAlert("Unauthorised error", "Error");
     }
   };
 
