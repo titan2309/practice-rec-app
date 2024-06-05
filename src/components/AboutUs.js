@@ -2,17 +2,25 @@ import React from "react";
 
 export default function AboutUs() {
   return (
-    <div>
+    <div
+      style={{ display: "flex", justifyContent: "center", marginTop: "10%" }}
+    >
       <div className="card" style={{ width: "18rem" }}>
-        <img src="..." className="card-img-top" alt="..." />
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
+          <h5 className="card-title">Hardik Rathore (CEO & Founder) </h5>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            I am a dedicated and passionate professional with a strong
+            background in Web-Development. With 1 month of experience in React,
+            I have developed a deep understanding of the unique challenges and
+            opportunities that businesses face in today's fast-paced and
+            ever-changing environment.
           </p>
-          <a href="/" className="btn btn-primary">
-            Go somewhere
+          <a
+            href="https://www.linkedin.com/in/hardik-rathore-76bb8b224/"
+            className="btn btn-primary"
+            target="_blank"
+          >
+            LinkedIn
           </a>
         </div>
       </div>

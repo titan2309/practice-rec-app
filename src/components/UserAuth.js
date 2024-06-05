@@ -26,11 +26,11 @@ export default function UserAuth(props) {
     if (user) {
       console.log("User Email: " + email);
       console.log("User Password: " + password);
-      props.showAlert("You have been authenticated", "Welcome");
+      props.showAlert("You have been authenticated", "Welcome:");
       setEmail("");
       setPassword("");
     } else {
-      props.showAlert("Unauthorised error", "Error");
+      props.showAlert("Unauthorised error", "Error:");
     }
   };
 
