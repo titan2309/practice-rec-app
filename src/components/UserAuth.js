@@ -4,6 +4,11 @@ import { users } from "./UserData";
 export default function UserAuth(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const emailUpdater = (event) => {
     setEmail(event.target.value);
@@ -68,7 +73,7 @@ export default function UserAuth(props) {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="inputPassword5"
               className="form-control"
               aria-describedby="passwordHelpBlock"
@@ -76,7 +81,16 @@ export default function UserAuth(props) {
               value={password}
               onChange={passwordUpdater}
             />
-            <button className="btn btn-primary my-3" onClick={submitHandler}>
+            <button
+              className="btn btn-primary my-3"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+            <button
+              className="btn btn-primary mx-2 my-3"
+              onClick={submitHandler}
+            >
               Submit
             </button>
           </div>

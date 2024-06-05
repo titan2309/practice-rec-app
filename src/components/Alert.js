@@ -1,10 +1,10 @@
 import React from "react";
 
 export default function Alert(props) {
-  if (!props.alert) return null;
+  if (props.alert === true) return null;
   return (
     <div>
-      <div>
+      <div style={{ height: "0px" }}>
         <div
           className={`alert alert-${
             props.alert.type === "Welcome" ? "success" : "danger"
